@@ -1,3 +1,6 @@
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 import javax.swing.JFrame;
 
 public class Main {
@@ -7,12 +10,17 @@ public class Main {
 		
 		JFrame frame = new JFrame("pinball simulation");
 		frame.setSize(800, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-		//frame.setLocation(900, 250);
 		
 		circleComponent circle = new circleComponent();
 		frame.add(circle);
+		
+		/*final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+		executorService.scheduleAtFixedRate(arg0, arg1, arg2, arg3)
+		*/
+		
 
 	}
 
