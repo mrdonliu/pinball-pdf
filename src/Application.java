@@ -17,14 +17,9 @@ public class Application extends JFrame{
 		setVisible(true);
 		circleComponent circle = new circleComponent();
 		add(circle);
-		for( int i = 0 ; i < 10 ; i++ ){
+		while(true){
 			circle.move();
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 		}
 		
 		
@@ -34,7 +29,7 @@ public class Application extends JFrame{
 
 	public static void main(String[] args) {
 		
-		EventQueue.invokeLater(new Runnable() {
+		/*EventQueue.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
@@ -43,7 +38,10 @@ public class Application extends JFrame{
 			}
 		
 		
-	});
+	});*/
+		
+		Application ex = new Application();
+		
 		
 
 	}
