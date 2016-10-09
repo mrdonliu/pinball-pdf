@@ -15,21 +15,13 @@ public class Application extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		circleComponent circle = new circleComponent();
-		add(circle);
-		while(true){
-			circle.move();
-
-		}
-		
-		
-		
-		
+		circleComponent cc = new circleComponent();
+		add(cc);
 	}
 
 	public static void main(String[] args) {
 		
-		/*EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
@@ -38,9 +30,9 @@ public class Application extends JFrame{
 			}
 		
 		
-	});*/
+	});
 		
-		Application ex = new Application();
+	
 		
 		
 

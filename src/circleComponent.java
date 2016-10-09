@@ -17,7 +17,9 @@ public class circleComponent extends JComponent{
 	private circleQueue cq;
 	private int numOfCircles;
 	private int numOfCirclesLeft;
-	
+	circle c = new circle();//
+	Thread t; // 
+	Runnable r;
 	
 	public circleComponent(){ 
 		
@@ -25,6 +27,14 @@ public class circleComponent extends JComponent{
 		numOfCircles = DEFAULT_NUM_OF_CIRCLES;
 		numOfCirclesLeft = numOfCircles;
 		
+		
+		c = new circle(this);
+		r = c;
+		cq.enqueue(c); //
+		/*Thread t = new Thread(c);
+		t.start();*/
+		
+		new Thread(r).start();
 	}
 	
 	public circleComponent( int numOfCircles ){
@@ -41,29 +51,19 @@ public class circleComponent extends JComponent{
 	public void paintComponent( Graphics g ){
 	
 		super.paintComponent(g);
-		drawCircle(g);
-		
+		drawCircles(g);
+		System.out.println("drawing");
 	}
 	
-	public void drawCircle( Graphics g ){
+	public void drawCircles( Graphics g ){
 		Graphics2D g2 = (Graphics2D) g;
-		circle c1 = new circle();
-		circle c2 = new circle(88,88);
-		g2.draw(c1.getDrawing());
-	}
-	
-	
-	public void move(){
 		
-		
-		
-		repaint();
-		try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if ( ! cq.isEmpty() ){
+			for( int i = 0 ; i < cq.size(); i++ ){
+				g2.draw(cq.get(i).getDrawing());
+			}
 		}
+		
 	}
 
 }
