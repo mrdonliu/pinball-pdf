@@ -1,37 +1,39 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.util.Random;
 
-public class circle implements Runnable{
-	private final int STARTINGX = 50;
+public class Pinball implements Runnable{
+	private final int STARTINGX = 900;
 	private final int STARTINGY = 50;
 	
 	private int currentX;
+	
+	
+	public Color getC() {
+		return c;
+	}
+
+
+
 	private int currentY;
 	
 	private final int MAX_MOVES = 10;
 	private int moves;
 	
-	private circleComponent cc;
+	private Random r = new Random();
+	private Color c;
 	
-	
-	
-	public circle(){
+	/**
+	 * Circle needs to know the display it's drawing on. 
+	 * @param cc
+	 */
+	public Pinball( Display cc ){
 		currentX = STARTINGX;
 		currentY = STARTINGY;
 		moves = 0;
-	}
-	
-	public circle( int x , int y ){
-		this.currentX = x;
-		this.currentY = y;
-	}
-	
-	public circle( circleComponent cc ){
-		this.cc = cc;
-		currentX = STARTINGX;
-		currentY = STARTINGY;
-		moves = 0;
+		c = new Color( r.nextInt(256) , r.nextInt(256) , r.nextInt(256) );
 		
 	}
 	
@@ -40,7 +42,7 @@ public class circle implements Runnable{
 	}
 	
 	public void increaseY( int value ){
-		currentX = currentX + value;
+		currentY = currentY + value;
 	}
 	
 	
@@ -53,9 +55,20 @@ public class circle implements Runnable{
 	 * @return
 	 */
 	
-	public circle move(){
-		increaseX(50);
-		increaseY(50);
+	public Pinball move(){
+		int i = r.nextInt(2);
+		if ( i == 0 ){
+			increaseX(50);
+			increaseY(50);
+		}
+		else if ( i == 1 ){
+			increaseX(-50);
+			increaseY(50);
+		}
+		
+		moves++;
+		//Simulation.getDisplay().transmitCircle(this);
+		Simulation.getDisplay().repaint();
 		return this;
 		
 	}
@@ -65,7 +78,7 @@ public class circle implements Runnable{
 		g2.draw( getDrawing() );
 	}
 	
-	public circle moveDown(){
+	public Pinball moveDown(){
 		increaseY(100);
 		return this;
 	}
@@ -90,18 +103,19 @@ public class circle implements Runnable{
 		this.currentY = y;
 	}
 	
-	public void draw( Graphics g ){
-		Graphics2D g2 = (Graphics2D) g;
-		g2.draw(getDrawing());
+	public boolean isFinished(){
+		return moves == MAX_MOVES;
 	}
-
-	@Override
+	
+	
 	public void run() {
 		
-		while( true ){
+		while( ! isFinished() ){
 		
 			move();
-			cc.repaint();
+			// transmitCircle takes this circle object and paints it on the main display.
+			/*Simulation.getDisplay().transmitCircle(this);
+			Simulation.getDisplay().repaint();*/
 			System.out.println("moving");
 			try {
 				Thread.sleep(1000);
