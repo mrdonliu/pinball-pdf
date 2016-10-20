@@ -112,13 +112,16 @@ public class Pinball implements Runnable{
 		
 		while( ! isFinished() ){
 		
-			move();
+			//move();
 			// transmitCircle takes this circle object and paints it on the main display.
 			/*Simulation.getDisplay().transmitCircle(this);
 			Simulation.getDisplay().repaint();*/
 			System.out.println("moving");
 			try {
+				
 				Thread.sleep(1000);
+				
+				move();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -35,7 +35,13 @@ public static Display getDisplay(){
 
 public void initQueue(){
 	q = new Queue<>();
-	for ( int i = 0 ; i < numOfCircles ; i++ ){
+	
+	/**
+	 * Based on numOfCircles, that number of pinballs are added to this queue.
+	 * Think of this as loading pinballs into the top of the machine, each ready to be 
+	 * dequeued ( released and ran ) .
+	 */
+	for ( int i = 0 ; i < numOfCircles ; i++ ){ 
 		q.enqueue( new Pinball(display) );
 	}
 	

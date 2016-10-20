@@ -1,9 +1,9 @@
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.Shape;
-import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
 
@@ -21,8 +21,13 @@ public class Display extends JComponent{
 		chartBars = new Shape[11];
  }
 	
+
 	
+	public Queue<Pinball> getpinballDrawings(){ return pinballDrawings; }
 	
+	public void drawinterfaceDrawings(){}
+	
+	public void drawcharBars(){}
 	
 	public void drawPinballs( Graphics2D g2 ){
 		for ( int i = 0 ; i < pinballDrawings.size(); i++ ){
@@ -34,12 +39,6 @@ public class Display extends JComponent{
 		
 	}
 	
-	public Queue<Pinball> getpinballDrawings(){ return pinballDrawings; }
-	
-	public void drawinterfaceDrawings(){}
-	
-	public void drawcharBars(){}
-	
 	public void addPinball( Pinball p ){
 		pinballDrawings.enqueue(p);
 	}
@@ -50,7 +49,10 @@ public class Display extends JComponent{
 		super.paintComponent(g);
 		//drawCircle(g);
 		Graphics2D g2 = (Graphics2D) g;
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		drawPinballs(g2);
+		
+		g2.draw( new Rectangle2D.Double(915 , 110 , 20 , 30 ) );//
 		System.out.println("drawing");
 	}
 	
