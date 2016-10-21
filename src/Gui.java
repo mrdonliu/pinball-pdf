@@ -13,7 +13,7 @@ public class Gui {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.add(Simulation.getDisplay());
-
-	}
-
+		
+    }
+	
 }

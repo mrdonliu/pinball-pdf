@@ -14,17 +14,25 @@ public class Display extends JComponent{
 	private Ellipse2D s;
 	
 	private Queue<Pinball> pinballDrawings;
-	private Shape[] interfaceDrawings; // 
-	private Shape[] chartBars;
 	private ArrayList<Rectangle2D.Double> al; //
+	private int[] numbInEndXPosition;
 	
 	
 	public Display(){ 
 		pinballDrawings = new Queue<>();
-		interfaceDrawings = new Shape[100];
-		chartBars = new Shape[11];
 		al = Chart.getChart(); // 
+		numbInEndXPosition = new int[15];
+		
+		for ( int i = 0 ; i < 15 ; i++ ) numbInEndXPosition[i] = 0;
  }
+	
+	/**
+	 * End X Positions are 400, 500, ... 1400. End Y position is always 550.
+	 * Thereby this method takes X positions of completed pinballs, divides it by 100, 
+	 * and stores it in its respective array of size 15. 
+	 */
+	public synchronized int getNumbInEndXPosition( int x ){ return numbInEndXPosition[ x / 100 ]; }
+	public synchronized void setEndXPosition( int x ){ numbInEndXPosition[x/100] ++ ;}
 	
 
 	

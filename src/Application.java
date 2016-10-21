@@ -4,9 +4,9 @@ import javax.swing.JFrame;
 
 
 /**
- * This class sets up the graphical interface. 
- * @author don
- *
+ * This class initializes the user interface. 
+ * Inside the main method, Simulation class is create.
+ * Simulation is then started.
  */
 public class Application extends JFrame{
 	

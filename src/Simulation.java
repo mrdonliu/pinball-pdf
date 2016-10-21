@@ -6,21 +6,12 @@ public class Simulation {
 	
 	
 	private final int DEFAULT_NUM_OF_CIRCLES = 10;
-	private Queue<Pinball> q;
 	private int numOfCircles;
 	private int numOfCirclesLeft;
+	private Queue<Pinball> q;
+	private Runnable r;
+	private static Display display = new Display();
 	
-	
-	Thread t; // 
-	Runnable r;
-	static Display display = new Display();
-	Pinball c;
-	
-	
-public Simulation(){
-	
-}
-
 
 public Simulation( int numOfCircles ){
 	
@@ -42,7 +33,7 @@ public void initQueue(){
 	 * dequeued ( released and ran ) .
 	 */
 	for ( int i = 0 ; i < numOfCircles ; i++ ){ 
-		q.enqueue( new Pinball(display) );
+		q.enqueue( new Pinball() );
 	}
 	
 }
@@ -65,11 +56,6 @@ public void start(){
 
 	}, 0, 300, TimeUnit.MILLISECONDS);
 	
-	
-	
 }
-
-
-
 
 }
