@@ -9,14 +9,6 @@ public class Pinball implements Runnable{
 	private final int STARTINGY = 50;
 	
 	private int currentX;
-	
-	
-	public Color getC() {
-		return c;
-	}
-
-
-
 	private int currentY;
 	
 	private final int MAX_MOVES = 10;
@@ -29,6 +21,12 @@ public class Pinball implements Runnable{
 	 * Circle needs to know the display it's drawing on. 
 	 * @param cc
 	 */
+	
+	public Color getC() {
+		return c;
+	}
+	
+	
 	public Pinball( Display cc ){
 		currentX = STARTINGX;
 		currentY = STARTINGY;
@@ -47,23 +45,58 @@ public class Pinball implements Runnable{
 	
 	
 	public Ellipse2D.Double getDrawing(){
-		return new Ellipse2D.Double(currentX, currentY, 50, 50);
+		return new Ellipse2D.Double(currentX, currentY, 45, 45);
 	}
 	
 	/**
 	 * Changes x and y coordinates of this object, and then returns this object. 
 	 * @return
 	 */
-	
+	public void moveDown(){
+		for ( int x = 0 ; x < 150 ; x++ ){
+			increaseY(1);
+			Simulation.getDisplay().repaint();
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
 	public Pinball move(){
 		int i = r.nextInt(2);
 		if ( i == 0 ){
-			increaseX(50);
-			increaseY(50);
+			/*increaseX(50);
+			increaseY(50);*/
+			for ( int x = 0 ; x < 50 ; x++ ){
+				increaseX(1);
+				increaseY(1);
+				Simulation.getDisplay().repaint();
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		else if ( i == 1 ){
-			increaseX(-50);
-			increaseY(50);
+			/*increaseX(-50);
+			increaseY(50);*/
+			for ( int x = 0 ; x < 50 ; x++ ){
+				increaseX(-1);
+				increaseY(1);
+				Simulation.getDisplay().repaint();
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		moves++;
@@ -78,10 +111,7 @@ public class Pinball implements Runnable{
 		g2.draw( getDrawing() );
 	}
 	
-	public Pinball moveDown(){
-		increaseY(100);
-		return this;
-	}
+
 	
 	
 	
@@ -116,10 +146,10 @@ public class Pinball implements Runnable{
 			// transmitCircle takes this circle object and paints it on the main display.
 			/*Simulation.getDisplay().transmitCircle(this);
 			Simulation.getDisplay().repaint();*/
-			System.out.println("moving");
+			//System.out.println("moving");
 			try {
 				
-				Thread.sleep(1000);
+				Thread.sleep(5);
 				
 				move();
 			} catch (InterruptedException e) {
@@ -127,6 +157,8 @@ public class Pinball implements Runnable{
 				e.printStackTrace();
 			}
 		}
+		System.out.println("Final coordinate: X: " + currentX + " Y: " + currentY);
+		moveDown();
 		// TODO Auto-generated method stub
 		
 	}

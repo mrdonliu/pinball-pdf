@@ -62,8 +62,8 @@ public void start(){
 			new Thread(r).start();
 			
 		}
-		
-	}, 0, 1000, TimeUnit.MILLISECONDS);
+
+	}, 0, 300, TimeUnit.MILLISECONDS);
 	
 	
 	

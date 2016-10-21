@@ -22,7 +22,7 @@ public class Application extends JFrame{
 			public void run() {
 				// TODO Auto-generated method stub
 				Application a = new Application();
-				Simulation s = new Simulation(100);
+				Simulation s = new Simulation(200);
 				s.start();
 			}
 			
